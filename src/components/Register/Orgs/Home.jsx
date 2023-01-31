@@ -1,7 +1,7 @@
 import React from 'react'
 
-import Logo from '../img/logo.svg'
-import Footer from '../Footer/Home'
+import Logo from '../../img/logo.svg'
+import Footer from '../../Footer/Home'
 
 function Home() {
   return (

@@ -6,7 +6,7 @@ function Footer() {
       
       <div className='bg-red w-full p-5 mt-[97px]'>
         <div>
-          <ul className='flex pb-3 text-[20px] justify-center text-white font-poppins space-x-12'>
+          <ul className='flex pb-3 text-[15px] justify-center text-white font-poppins space-x-12'>
             <li className='hover:text-red-500'><a href="/about">About Us</a></li>
             <li className='hover:text-red-500'><a href="/about">Policies</a></li>
             <li className='hover:text-red-500'><a href="/about">Terms&Conditions</a></li>

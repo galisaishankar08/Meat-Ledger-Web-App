@@ -16,4 +16,16 @@
 
 body { 
     background: #F6F3EF;
+    -ms-overflow-style: none;  /* IE and Edge */
+    scrollbar-width: none;  /* Firefox */
 }
+
+body::-webkit-scrollbar {
+    display: none;
+  }
+  
+  .ScrollStyle
+  {
+    max-height: 470px;
+    overflow-y: scroll;
+  }
