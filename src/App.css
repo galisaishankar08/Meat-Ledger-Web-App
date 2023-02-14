@@ -1,3 +1,7 @@
 .App {
   font-family: CadetBlack;
 }
+
+body{
+  background-image: linear-gradient( to right,white, #EF3E27);
+}

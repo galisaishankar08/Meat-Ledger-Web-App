@@ -1,9 +1,8 @@
 import React from 'react'
 
-import Logo from '../img/logo.svg'
-import Footer from '../Footer/Home'
+import Logo from '../../Images/logo.svg'
 
-function Home() {
+function page() {
   return (
     <div className="">
       <img className='mx-10 my-10 h-[130px] w-[200px]' src={Logo} alt="Logo" />
@@ -39,10 +38,8 @@ function Home() {
         <div>
         </div>
       </div>
-
-      <Footer />
     </div>
   )
 }
 
-export default Home
+export default page
