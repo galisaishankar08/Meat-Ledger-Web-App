@@ -8,6 +8,7 @@ module.exports = {
       colors: {
         'red': '#EF3E27',
         'grey': '#D9D9D9',
+        'white': '#FFFFFF',
       },
       fontFamily: {
         cadetblack: ["CadetBlack"],

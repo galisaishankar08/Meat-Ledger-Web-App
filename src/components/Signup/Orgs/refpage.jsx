@@ -117,7 +117,7 @@ function Page() {
       const refdata = new FormData(e.target);
       const data = Object.fromEntries(refdata.entries());
    
-      Axios.post("http://localhost:3001/herdsman/signup/validatereferal", {
+      Axios.post("http://localhost:3001/orgs/signup/validatereferal", {
         name: data.name,
         email: data.email,
         password: data.password,
@@ -128,7 +128,7 @@ function Page() {
       })
         .then((response) => {
             console.log(response);
-            window.location.href("/herdsman/signin");
+            window.location.href("/"+usertype+"/signin");
         }, (error) => {
             console.log(error.response.data);
         });
@@ -142,7 +142,7 @@ function Page() {
       <img className='m-10 h-[130px] w-[200px]' src={Logo} alt="Logo" />
 
 
-      <form onSubmit={handleSubmit} className='bg-white bg-opacity-[35%] rounded-lg p-10 pt-7 m-auto w-fit'>
+      <form onSubmit={handleSubmit} className='bg-white bg-opacity-[35%] rounded-lg p-10 pt-7 m-auto w-fit shadow-2xl hover:scale-105'>
         <h1 className="relative font-cadetbold text-red text-center text-[48px]">SIGN UP</h1>
 
         <div className='relative flex justify-center space-x-20 mb-5'>

@@ -36,7 +36,7 @@ conn.connect((err) =>{
 });
 
 //add new user
-app.post('/herdsman/signup/new',(req, res) => {
+app.post('/orgs/signup/new',(req, res) => {
   const userid = Math.floor(100000 + Math.random() * 900000);
   const name = req.body.name;
   const email = req.body.email;
@@ -47,7 +47,7 @@ app.post('/herdsman/signup/new',(req, res) => {
 
   console.log(name, email, password, contact, address);
   
-  conn.query("INSERT INTO users (userid,name,email,password,contact, address, usertype) values (?,?,?,?,?,?,?)", [userid, name,email, password, contact,address, usertype],
+  conn.query("INSERT INTO unverifiedusers (userid,name,email,password,contact, address, usertype) values (?,?,?,?,?,?,?)", [userid, name,email, password, contact,address, usertype],
     (err,result) => {
       if(err){
         console.log(err);
@@ -60,7 +60,7 @@ app.post('/herdsman/signup/new',(req, res) => {
     })
 });
 
-app.post('/herdsman/signup/validatereferal',(req, res) => {
+app.post('/orgs/signup/validatereferal',(req, res) => {
   const userid = Math.floor(100000 + Math.random() * 900000);
   const name = req.body.name;
   const email = req.body.email;
@@ -107,18 +107,16 @@ app.post('/herdsman/signup/validatereferal',(req, res) => {
 
 //user login
 
-app.post('/login/log',(req, res) => {
+app.post('/orgs/signin',(req, res) => {
 
-  const loginemail = req.body.loginemail
-  const loginpassword = req.body.loginpassword;
+  const email = req.body.email
+  const password =req.body.password;
 
-  console.log(loginemail,loginpassword);
+  console.log(email,password);
   
   conn.query(
-    "SELECT count(*), name, email, password FROM user WHERE email LIKE ?",
-    [loginemail],
+    "SELECT count(*), email, password FROM users WHERE email = ?", [email],
     (err,result) =>{
-
       const count = result[0]['count(*)'];
       const userpassword = result[0].password;
       const username = result[0].name;
@@ -127,7 +125,7 @@ app.post('/login/log',(req, res) => {
       if(count == 0){
         res.status(409).send("Email Does Not Exist");
       }
-      else if(userpassword != loginpassword){
+      else if(userpassword != password){
         res.status(409).send("Invalid Password"); 
       }
       else{

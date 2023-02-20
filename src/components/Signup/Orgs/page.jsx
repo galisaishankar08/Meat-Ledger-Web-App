@@ -3,6 +3,7 @@ import { useLocation } from "react-router-dom";
 import Axios from 'axios';
 
 import Logo from '../../Images/logo.svg'
+import Meat from '../../Images/meat.jpg'
 
 const namePattern = /^[a-zA-Z]+(([',. -][a-zA-Z ])?[a-zA-Z]*)*$/;
 const emailPattern = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
@@ -116,7 +117,7 @@ function Page() {
 
       console.log(data);
    
-      Axios.post("http://localhost:3001/herdsman/signup/new", {
+      Axios.post("http://localhost:3001/orgs/signup/new", {
         name: data.name,
         email: data.email,
         password: data.password,
@@ -126,7 +127,7 @@ function Page() {
       })
         .then((response) => {
             console.log(response);
-            window.location.href("/herdsman/signin");
+            window.location.href("/"+usertype+"/signin");
         }, (error) => {
             console.log(error.response.data);
         });
@@ -137,52 +138,53 @@ function Page() {
     <>
     <div className="">
       <img className='m-10 h-[130px] w-[200px]' src={Logo} alt="Logo" />
-
-
-      <form onSubmit={handleSubmit} className='bg-white bg-opacity-[35%] rounded-lg p-10 pt-7 m-auto w-fit'>
+      <div className='flex m-auto justify-center px-[300px]'>
+        <img src={Meat} alt="Meat" className='flex-1 object-cover h-[503px] shadow-2xl rounded-l-lg'/>
+     
+      <form onSubmit={handleSubmit} className='bg-white  flex-1 rounded-r-lg p-10 pt-7 m-auto shadow-[0_35px_60px_-15px_rgba(0,0,0,0.5)]'>
         <h1 className="relative font-cadetbold text-red text-center text-[48px]">SIGN UP</h1>
 
-        <div className='relative flex justify-center space-x-20 mb-5'>
+        <div className='relative flex justify-center space-x-10 mb-5'>
 
           {/* Name */}
 
           <label className={nameLabel === 'Name' ? 'text-black font-poppins text-[16px]' : 'text-red font-poppins text-[16px]'}>
             {nameLabel} <br />
-            <input type="text" name='name' onChange={handleNameChange} value={name} className={nameLabel === 'Name' ? 'text-slate-800 text-base p-3 w-[260px] border-b-2 rounded-[5px] outline-none border-black bg-slate-600 bg-opacity-10 hover:border-[3px]' : 'text-slate-800 text-base p-3 w-[260px] border-b-2 rounded-[7px] border-red bg-slate-600 bg-opacity-10 focus:outline-red hover:border-[2px]'} />
+            <input type="text" name='name' onChange={handleNameChange} value={name} className={nameLabel === 'Name' ? 'text-slate-800 text-base p-3  border-b-2 rounded-[5px] outline-none border-black bg-slate-600 bg-opacity-10 hover:border-[3px]' : 'text-slate-800 text-base p-3 w-[260px] border-b-2 rounded-[7px] border-red bg-slate-600 bg-opacity-10 focus:outline-red hover:border-[2px]'} />
           </label>
 
           <label className={emailLabel === 'Email' ? 'text-black font-poppins text-[16px]' : 'text-red font-poppins text-[16px]'}>
              {emailLabel} <br />
-            <input type="email" name="email" onChange={handleEmailChange} value={email} className={emailLabel === 'Email' ? 'text-slate-800 text-base p-3 w-[260px] border-b-2 rounded-[5px] outline-none border-black bg-slate-600 bg-opacity-10 hover:border-[3px]' : 'text-slate-800 text-base p-3 w-[260px] border-b-2 rounded-[7px] border-red bg-slate-600 bg-opacity-10 focus:outline-red hover:border-[2px]'} />
+            <input type="email" name="email" onChange={handleEmailChange} value={email} className={emailLabel === 'Email' ? 'text-slate-800 text-base p-3  border-b-2 rounded-[5px] outline-none border-black bg-slate-600 bg-opacity-10 hover:border-[3px]' : 'text-slate-800 text-base p-3 w-[260px] border-b-2 rounded-[7px] border-red bg-slate-600 bg-opacity-10 focus:outline-red hover:border-[2px]'} />
           </label>
         </div>
 
         {/* <br /> */}
 
-        <div className='relative flex justify-center space-x-20 mb-5'>
+        <div className='relative flex justify-center space-x-10 mb-5'>
           <label className={passwordLabel === 'Password' ? 'text-black font-poppins text-[16px]' : 'text-red font-poppins text-[16px]'}>
             {passwordLabel} <br/>
-            <input type="password" name="password" onChange={handlePasswordChange} value={password} className={passwordLabel === 'Password' ? 'text-slate-800 text-base p-3 w-[260px] border-b-2 rounded-[5px] outline-none border-black bg-slate-600 bg-opacity-10 hover:border-[3px]' : 'text-slate-800 text-base p-3 w-[260px] border-b-2 rounded-[7px] border-red bg-slate-600 bg-opacity-10 focus:outline-red hover:border-[2px]'} />
+            <input type="password" name="password" onChange={handlePasswordChange} value={password} className={passwordLabel === 'Password' ? 'text-slate-800 text-base p-3  border-b-2 rounded-[5px] outline-none border-black bg-slate-600 bg-opacity-10 hover:border-[3px]' : 'text-slate-800 text-base p-3 w-[260px] border-b-2 rounded-[7px] border-red bg-slate-600 bg-opacity-10 focus:outline-red hover:border-[2px]'} />
           </label>
 
           <label className={repasswordLabel === 'Re-Enter Password' ? 'text-black font-poppins text-[16px]' : 'text-red font-poppins text-[20px]'}>
             {repasswordLabel} <br/>
-            <input type="password" onChange={handleRePasswordChange} value={repassword} className={repasswordLabel === 'Re-Enter Password' ? 'text-slate-800 text-base p-3 w-[260px] border-b-2 rounded-[5px] outline-none border-black bg-slate-600 bg-opacity-10 hover:border-[3px]' : 'text-slate-800 text-base p-3 w-[260px] border-b-2 rounded-[7px] border-red bg-slate-600 bg-opacity-10 focus:outline-red hover:border-[2px]'} />
+            <input type="password" onChange={handleRePasswordChange} value={repassword} className={repasswordLabel === 'Re-Enter Password' ? 'text-slate-800 text-base p-3 border-b-2 rounded-[5px] outline-none border-black bg-slate-600 bg-opacity-10 hover:border-[3px]' : 'text-slate-800 text-base p-3 w-[260px] border-b-2 rounded-[7px] border-red bg-slate-600 bg-opacity-10 focus:outline-red hover:border-[2px]'} />
           </label>
         </div>
 
-        <div className='relative flex justify-center space-x-20 mb-5'>
+        <div className='relative flex justify-center space-x-10 mb-5'>
 
           {/* Contact */}
 
           <label className={contactLabel === 'Contact' ? 'text-black font-poppins text-[16px]' : 'text-red font-poppins text-[16px]'}>
             {contactLabel} <br/>
-            <input type="text" name="contact" onChange={handleContactChange} value={contact} className={contactLabel === 'Contact' ? 'text-slate-800 text-base p-3 w-[260px] border-b-2 rounded-[5px] outline-none border-black bg-slate-600 bg-opacity-10 hover:border-[3px]' : 'text-slate-800 text-base p-3 w-[260px] border-b-2 rounded-[7px] border-red bg-slate-600 bg-opacity-10 focus:outline-red hover:border-[2px]'} />
+            <input type="text" name="contact" onChange={handleContactChange} value={contact} className={contactLabel === 'Contact' ? 'text-slate-800 text-base p-3 border-b-2 rounded-[5px] outline-none border-black bg-slate-600 bg-opacity-10 hover:border-[3px]' : 'text-slate-800 text-base p-3 w-[260px] border-b-2 rounded-[7px] border-red bg-slate-600 bg-opacity-10 focus:outline-red hover:border-[2px]'} />
           </label>
 
           <label className={addressLabel === 'Address' ? 'text-black font-poppins text-[16px]' : 'text-red font-poppins text-[16px]'}>
             {addressLabel} <br/>
-            <input type="text" name="address" onChange={handleAddressChange} value={address} className={addressLabel === 'Address' ? 'text-slate-800 text-base p-3 w-[260px] border-b-2 rounded-[5px] outline-none border-black bg-slate-600 bg-opacity-10 hover:border-[3px]' : 'text-slate-800 text-base p-3 w-[260px] border-b-2 rounded-[7px] border-red bg-slate-600 bg-opacity-10 focus:outline-red hover:border-[2px]'} />
+            <input type="text" name="address" onChange={handleAddressChange} value={address} className={addressLabel === 'Address' ? 'text-slate-800 text-base p-3 border-b-2 rounded-[5px] outline-none border-black bg-slate-600 bg-opacity-10 hover:border-[3px]' : 'text-slate-800 text-base p-3 w-[260px] border-b-2 rounded-[7px] border-red bg-slate-600 bg-opacity-10 focus:outline-red hover:border-[2px]'} />
           </label>
         </div>
 
@@ -196,10 +198,10 @@ function Page() {
         <div className='relative top-2 flex justify-center mt-1'>
           <input className='bg-red text-white font-poppins text-[14px] py-2 px-10 rounded-md shadow-lg shadow-slate-500 hover:scale-110' type="submit" value='Signup'/>
         </div>
-
-        <div>
-        </div>
       </form>
+
+      </div>
+     
     </div>
     </>
   )

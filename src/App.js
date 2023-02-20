@@ -5,15 +5,12 @@ import Footer from './components/Footer/Home';
 
 import Home from './components/Home/Home'  
 
-import HerdsmanLogin from './components/Herdsman/Login/page'
 import Herdsman from './components/Herdsman/Home/page'
 import HerdsmanProfile from './components/Herdsman/Profile/page'
 
-import SlaughterLogin from './components/Slaughter/Login/page'
 import Slaughter from './components/Slaughter/Home/page'
 import SlaughterProfile from './components/Slaughter/Profile/page'
 
-import RetailerLogin from './components/Retailer/Login/page'
 import Retailer from './components/Retailer/Home/page'
 import RetailerProfile from './components/Retailer/Profile/page'
 
@@ -22,10 +19,12 @@ import Register from './components/User/Register/page'
 
 import OrgsSignup from './components/Signup/Orgs/page'
 import OrgsReferralSignup from './components/Signup/Orgs/refpage'
+import OrgsSignin from './components/Signin/Orgs/page'
 
 function App() {
   return (
-    <Router>
+    <div className=''>
+    <Router >
       <Routes>
         {/* <Route path='admin' element={<Admin/>} /> */}
 
@@ -36,7 +35,7 @@ function App() {
             <Route index element={<OrgsSignup />} />
             <Route path=':referralid' element={<OrgsReferralSignup />} />
           </Route>
-          <Route path='signin' element={<HerdsmanLogin />}/>
+          <Route path='signin' element={<OrgsSignin />}/>
           <Route path='profile' element={<HerdsmanProfile />} />
         </Route>
 
@@ -47,7 +46,7 @@ function App() {
             <Route index element={<OrgsSignup />} />
             <Route path=':referralid' element={<OrgsReferralSignup />} />
           </Route>
-          <Route path='signin' element={<SlaughterLogin />}/>
+          <Route path='signin' element={<OrgsSignin />}/>
           <Route path='profile' element={<SlaughterProfile />} />
         </Route>
 
@@ -58,7 +57,7 @@ function App() {
             <Route index element={<OrgsSignup />} />
             <Route path=':referralid' element={<OrgsReferralSignup />} />
           </Route>
-          <Route path='signin' element={<RetailerLogin />}/>
+          <Route path='signin' element={<OrgsSignin />}/>
           <Route path='profile' element={<RetailerProfile />} />
         </Route>     
 
@@ -73,6 +72,7 @@ function App() {
 
       <Footer/>
     </Router>
+    </div>
   );
 }
 
