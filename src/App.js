@@ -1,4 +1,5 @@
 import './App.css';
+import React, { useState } from 'react'
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 
 import Footer from './components/Footer/Home';
@@ -21,7 +22,10 @@ import OrgsSignup from './components/Signup/Orgs/page'
 import OrgsReferralSignup from './components/Signup/Orgs/refpage'
 import OrgsSignin from './components/Signin/Orgs/page'
 
+import PrivateRoute from './PrivateRoute';
+
 function App() {
+  const [isAuthenticated, setIsAuthenticated] = useState(false);  // replace with your authentication logic
   return (
     <div className=''>
     <Router >
@@ -30,13 +34,13 @@ function App() {
 
         {/* Herdsman Routes*/}
         <Route path='/herdsman'>
-          <Route index element={<Herdsman />} />
+          <Route index element={<PrivateRoute component={Herdsman} isAuthenticated={isAuthenticated} organization='herdsman' />} />
           <Route path='signup'>
             <Route index element={<OrgsSignup />} />
             <Route path=':referralid' element={<OrgsReferralSignup />} />
           </Route>
-          <Route path='signin' element={<OrgsSignin />}/>
-          <Route path='profile' element={<HerdsmanProfile />} />
+          <Route path='signin' element={<OrgsSignin setAuthenticated={setIsAuthenticated}  />}/>
+          <Route path='profile' element={<PrivateRoute component={HerdsmanProfile} isAuthenticated={isAuthenticated} organization='herdsman' />} />
         </Route>
 
         {/* Slaughter Routes*/}

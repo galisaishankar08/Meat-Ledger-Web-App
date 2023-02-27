@@ -7,7 +7,7 @@ import Meat from '../../Images/Meat.mp4'
 
 const emailPattern = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
 
-function Page() {
+function Page({setAuthenticated}) {
   const [usertype, setUsertype] = useState('');
   const { pathname } = useLocation();
   const p = pathname.slice(1, 2);
@@ -29,7 +29,7 @@ function Page() {
     setPassword(event.target.value);
   };
 
-  const handleClick = (event) => {
+  const handleClick = () => {
     let relink = '';
     if(p==='h'){
       relink = '/herdsman/signup';
@@ -45,7 +45,6 @@ function Page() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-
     if(p==='h'){
       setUsertype('herdsman');
     }
@@ -55,16 +54,17 @@ function Page() {
     else{
       setUsertype('retailer');
     }
-    console.log(p,usertype);
 
-    Axios.post("http://localhost:3001/orgs/signin", {
+    Axios.post("http://localhost:3001/server/orgs/signin", {
         email: email,
         password: password,
-        usertype: usertype,
       })
         .then((response) => {
             console.log(response);
-            const relink = '/'+usertype;
+            setAuthenticated(true);
+            const relink = '/'+response.data.user.usertype;
+            console.log(relink);
+            localStorage.setItem(relink, JSON.stringify(response.data.user));
             window.location.href = relink;
         }, (error) => {
             console.log(error.response.data);

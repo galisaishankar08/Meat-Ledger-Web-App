@@ -117,13 +117,14 @@ function Page() {
 
       console.log(data);
    
-      Axios.post("http://localhost:3001/orgs/signup/new", {
-        name: data.name,
+      Axios.post("http://localhost:3001/server/orgs/signup", {
         email: data.email,
+        name: data.name,
         password: data.password,
         contact: data.contact,
         address: data.address,
         usertype: usertype,
+        verified: false,
       })
         .then((response) => {
             console.log(response);
@@ -139,7 +140,7 @@ function Page() {
     <div className="">
       <img className='m-10 h-[130px] w-[200px]' src={Logo} alt="Logo" />
       <div className='flex m-auto justify-center px-[300px]'>
-        <img src={Meat} alt="Meat" className='flex-1 object-cover h-[503px] shadow-2xl rounded-l-lg'/>
+        <img src={Meat} alt="Meat" className='flex-1 object-cover max-h-[483px] shadow-2xl rounded-l-lg'/>
      
       <form onSubmit={handleSubmit} className='bg-white  flex-1 rounded-r-lg p-10 pt-7 m-auto shadow-[0_35px_60px_-15px_rgba(0,0,0,0.5)]'>
         <h1 className="relative font-cadetbold text-red text-center text-[48px]">SIGN UP</h1>
